@@ -1,0 +1,4 @@
+Flask
+langchain
+huggingface_hub
+langchain_community
