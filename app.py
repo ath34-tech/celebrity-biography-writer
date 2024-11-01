@@ -12,7 +12,7 @@ os.environ["HUGGINGFACEHUB_API_TOKEN"] = hf_key
 
 # LangChain setup
 repo_id = "mistralai/Mistral-7B-Instruct-v0.2"
-llm = HuggingFaceEndpoint(repo_id=repo_id, temperature=0.7, model_kwargs={"max_length": 1500})
+llm = HuggingFaceEndpoint(repo_id=repo_id, temperature=0.7, model_kwargs={"max_length": 2048})
 
 # Define the biography prompt template
 template="""
@@ -30,7 +30,7 @@ You are an expert in biographies. Your job is to only write biographies for famo
       5. Personal life and any philanthropic efforts
       write all this in single paragraph continuous.
     - If the input text does not match a celebrity's name, respond with "Not a valid celebrity input."
-    - summarize everything exactly in 800 words nothing more or less.
+    - dont leave content incomplete. if you getting out of word limits, shrink content to fit.
     Biography:
 """
 
@@ -41,6 +41,9 @@ prompt_template = PromptTemplate(
 
 biography_chain = LLMChain(prompt=prompt_template, llm=llm)
 
+
+
+
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
@@ -49,8 +52,8 @@ def index():
         print(biography['text'])
         if "Not a valid celebrity input" in biography['text'] or "I'll assume the celebrity" in biography['text']:
             biography['text'] = "Ask me about celebrities only."    
-        return render_template("index.html", name=biography['input_text'], biography=biography['text'])
-    return render_template("index.html")
+        return render_template("index.html", name=biography['input_text'], biography=biography['text'],placeholder_text=name)
+    return render_template("index.html",placeholder_text="Enter a celebrity name...")
 
 if __name__ == "__main__":
     app.run(debug=True)

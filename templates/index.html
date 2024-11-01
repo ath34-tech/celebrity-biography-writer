@@ -8,7 +8,7 @@
         /* Global Styles */
         body {
             background-color: #000;
-            color: #39FF14;
+            color: #98FF98;
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
@@ -36,8 +36,8 @@
 
         /* Form styling */
         .input-box {
-            background-color: #39FF14;
-            border: 2px solid #39FF14;
+            background-color: #98FF98;
+            border: 2px solid #98FF98;
             color: #000;
             padding: 10px;
             width: 100%;
@@ -47,8 +47,8 @@
         }
 
         .submit-btn {
-            background-color: #39FF14;
-            border: 2px solid #39FF14;
+            background-color: #98FF98;
+            border: 2px solid #98FF98;
             color: #000;
             padding: 10px 20px;
             font-size: 1em;
@@ -62,8 +62,8 @@
         /* Biography output box */
         .biography-box {
             background-color: #000;
-            border: 2px solid #39FF14;
-            color: #39FF14;
+            border: 2px solid #98FF98;
+            color: #98FF98;
             border-radius: 15px;
             padding: 20px;
             margin-top: 20px;
@@ -80,8 +80,8 @@
 
         /* Button hover effect */
         .submit-btn:hover {
-            background-color: #32CD32;
-            border-color: #32CD32;
+            background-color: #98FF98;
+            border-color: #98FF98;
         }
 
         /* Responsive Design */
@@ -105,7 +105,7 @@
     <div class="container">
         <h1>Celebrity Biography Generator</h1>
         <form method="POST">
-            <textarea class="input-box" name="input_text" rows="3" placeholder="Enter a celebrity's name..."></textarea><br>
+            <textarea class="input-box" name="input_text" rows="3" placeholder="{{ placeholder_text }}"></textarea><br>
             <button type="submit" class="submit-btn">Generate Biography</button>
         </form>
         
